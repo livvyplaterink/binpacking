@@ -7,7 +7,6 @@ item_volume = {
         "i4" : 8,
         "i5" : 13,
         "i6" : 8,
-        "i7" : 40
         }
 
 #defining bin volume
@@ -41,7 +40,7 @@ for key in item_volume:
     ordered_items.append(key)
 
 #sorting items according to non-increasing order of volume
-def partition(volume_dict, item_list, start, end): 
+def partition_1(volume_dict, item_list, start, end): 
     pivot = volume_dict[item_list[start]]
     low = start + 1
     high = end 
@@ -57,15 +56,15 @@ def partition(volume_dict, item_list, start, end):
     item_list[start], item_list[high] = item_list[high], item_list[start]
     return high
 
-def quick_sort(volume_dict, item_list, start, end): 
+def quick_sort_1(volume_dict, item_list, start, end): 
     if start >= end: 
         return 
 
-    p = partition(volume_dict, item_list, start, end)
-    quick_sort(volume_dict, item_list, start, p-1) 
-    quick_sort(volume_dict, item_list, p+1, end)
+    p = partition_1(volume_dict, item_list, start, end)
+    quick_sort_1(volume_dict, item_list, start, p-1) 
+    quick_sort_1(volume_dict, item_list, p+1, end)
 
-quick_sort(item_volume, ordered_items, 0, len(ordered_items)-1) 
+quick_sort_1(item_volume, ordered_items, 0, len(ordered_items)-1) 
 print("ordered items: " + str(ordered_items))
 
 #defining ordered bins list 
@@ -77,7 +76,7 @@ for key in bin_volume:
     cv_ratio[key] = bin_cost[key] / bin_volume[key]
 
 #sorting bins according to non-decreasing order of the ratio c_j/V_j and non-increasing order of V_j when the unit costs c_j are equal 
-def partition(cv_dict, volume_dict, bin_list, start, end): 
+def partition_2(cv_dict, volume_dict, bin_list, start, end): 
     pivot_cv = cv_dict[bin_list[start]]
     pivot_v = volume_dict[bin_list[start]]
     low = start + 1
@@ -94,43 +93,68 @@ def partition(cv_dict, volume_dict, bin_list, start, end):
     bin_list[start], bin_list[high] = bin_list[high], bin_list[start]
     return high 
 
-def quick_sort(cv_dict, volume_dict, bin_list, start, end): 
+def quick_sort_2(cv_dict, volume_dict, bin_list, start, end): 
     if start >= end: 
         return
-    p = partition(cv_dict, volume_dict, bin_list, start, end) 
-    quick_sort(cv_dict, volume_dict, bin_list, start, p-1)
-    quick_sort(cv_dict, volume_dict, bin_list, p+1, end) 
+    p = partition_2(cv_dict, volume_dict, bin_list, start, end) 
+    quick_sort_2(cv_dict, volume_dict, bin_list, start, p-1)
+    quick_sort_2(cv_dict, volume_dict, bin_list, p+1, end) 
 
-quick_sort(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
+quick_sort_2(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
 print("cv ratio: " + str(cv_ratio))
 print("ordered bins " + str(ordered_bins))
 
-filled_bins = {}
-filled_bin_volume = []
+#filled_bins = {}
+#filled_bin_volume = {}
+#ordered_filled_bins = []
 
-for i in ordered items: 
+filled_bins = {} 
+filled_bin_volume = {
+        "b11" : 6,
+        "b22" : 30, 
+        "b33" : 22,
+        }
+ordered_filled_bins = ["b11", "b22", "b33"] 
+
+quick_sort_1(filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins)-1)
+print("initial ordered filled bins: " + str(ordered_filled_bins))
+print("initial bin volumes: " + str(filled_bin_volume))
+
+for i in ordered_items: 
+    for b in ordered_filled_bins: 
+        if item_volume[i] <= filled_bin_volume[b]: 
+            if b in filled_bins:
+                filled_bins[b].append(i)
+            else: 
+                filled_bins[b] = []
+                filled_bins[b].append(i)
+            filled_bin_volume[b] = filled_bin_volume[b] - item_volume[i] 
+            quick_sort_1(filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins)-1)           
+            print("reordered bins: " + str(ordered_filled_bins))
+            print("new bin volume: " + str(filled_bin_volume))
+            break
+        elif item_volume[i] > filled_bin_volume[len(filled_bins)] 
+print(filled_bins)
 
 
 
 
 
-
-
-filled_bins = {}
-filled_bin_volume = bin_volume
-
-for b in ordered_bins: 
-    filled_bins[b]  = []
-
-for i in ordered_items:
+#filled_bins = {}
+#filled_bin_volume = bin_volume
+#
+#for b in ordered_bins: 
+#    filled_bins[b]  = []
+#
+#for i in ordered_items:
 #    for b in filled_bins: 
 #        if item_volume[i] <= filled_bin_volume[b]:
 #            filled_bins[b].append(i)
 #
-    for b in ordered_bins:  
-        if item_volume[i] <= filled_bin_volume[b]:
-            filled_bins[b].append(i)
-            filled_bin_volume[b] = filled_bin_volume[b] - item_volume[i]
-            break
+#    for b in ordered_bins:  
+#        if item_volume[i] <= filled_bin_volume[b]:
+#            filled_bins[b].append(i)
+#            filled_bin_volume[b] = filled_bin_volume[b] - item_volume[i]
+#            break
 
-print("filled bins : " + str(filled_bins))
+#print("filled bins : " + str(filled_bins))
