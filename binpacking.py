@@ -21,7 +21,7 @@ bin_volume = {
 
 #defining bin cost
 bin_cost = {
-        "b1" : 5, 
+        "b1" : 1, 
         "b2" : 3, 
         "b3" : 2,
         "b4" : 8, 
@@ -64,7 +64,7 @@ def quick_sort_1(volume_dict, item_list, start, end):
     quick_sort_1(volume_dict, item_list, p+1, end)
 
 quick_sort_1(item_volume, ordered_items, 0, len(ordered_items)-1) 
-print("ordered items: " + str(ordered_items))
+#print("ordered items: " + str(ordered_items))
 
 
 
@@ -104,8 +104,8 @@ def quick_sort_2(cv_dict, volume_dict, bin_list, start, end):
     quick_sort_2(cv_dict, volume_dict, bin_list, p+1, end) 
 
 quick_sort_2(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
-print("cv ratio: " + str(cv_ratio))
-print("ordered bins " + str(ordered_bins))
+#print("cv ratio: " + str(cv_ratio))
+#print("ordered bins " + str(ordered_bins))
 
 
 
@@ -140,8 +140,8 @@ def quick_sort_3(cv_dict, volume_dict, bin_list, start, end):
 filled_bins = {}
 filled_bin_volume = {}
 ordered_filled_bins = []
-print("initial ordered filled bins: " + str(ordered_filled_bins))
-print("initial bin volumes: " + str(filled_bin_volume))
+#print("initial ordered filled bins: " + str(ordered_filled_bins))
+#print("initial bin volumes: " + str(filled_bin_volume))
 
 print(ordered_items)
 print(ordered_bins)
@@ -152,48 +152,62 @@ print(ordered_bins)
 for i in ordered_items: 
     print(ordered_filled_bins)
     if len(ordered_filled_bins) == 0: 
-        for j in ordered_bins:
+        for l in ordered_bins:
             print("i: " + str(i))
-            print("j: " + str(j))
-            if item_volume[i] > bin_volume[j]:
+            print("l: " + str(l))
+            if item_volume[i] > bin_volume[l]:
+                print("item volume:  " + str(item_volume[i]))
+                print("bin volume: " + str(bin_volume[l]))
+                print("item " + str(i) + " of volume " + str(item_volume[i]) + " too large for bin " + str(l) + " with volume " + str(bin_volume[l]))
                 continue 
-            filled_bins[j] = [i]
-            filled_bin_volume[j] = bin_volume[j] - item_volume[i]
-            ordered_filled_bins.append(j)
+            print("item volume:  " + str(item_volume[i]))
+            print("bin volume: " + str(bin_volume[l]))
+            print("item " + str(i) + " of volume " + str(item_volume[i]) + " fits in bin " + str(l) + " with volume " + str(bin_volume[l]))
+            filled_bins[l] = [i]
+            filled_bin_volume[l] = bin_volume[l] - item_volume[i]
+            ordered_filled_bins.append(l)
             quick_sort_3(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
-            print(filled_bins)
-            print(ordered_filled_bins)
+            print("filled bins: " + str(filled_bins))
+            print("ordered filled bins: " + str(ordered_filled_bins))
+            print("filled bin volume: " + str(filled_bin_volume))
             break
     else: 
         for b in ordered_filled_bins:
             print("i: " + str(i))
             print("b: " + str(b))
-            if item_volume[i] <= filled_bin_volume[b]: 
-                print("no new bins added") 
-                print("item " + str(i) + " of volume " + str(item_volume[i]) + " fits in bin " + str(b) + " of volume " + str(filled_bin_volume[b]))
+            print("item volume:  " + str(item_volume[i]))
+            print("bin volume: " + str(filled_bin_volume[b]))
+            if item_volume[i] <= filled_bin_volume[b]:
+                print("item " + str(i) + " of volume " + str(item_volume[i]) + " fits in bin " + str(b) + " with remaining volume " + str(filled_bin_volume[b]))
                 filled_bins[b].append(i)
                 filled_bin_volume[b] = filled_bin_volume[b] - item_volume[i]
                 quick_sort_3(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
+                print("filled bins: " + str(filled_bins))
+                print("ordered filled bins: " + str(ordered_filled_bins))
+                print("filled bin volume: " + str(filled_bin_volume))
                 break 
             if b == ordered_filled_bins[len(ordered_filled_bins)-1]:
-                print(i)
-                print(ordered_filled_bins)
-                print(b)
                 if item_volume[i] > filled_bin_volume[b]:
                     print("item " + str(i) + " of volume " + str(item_volume[i]) + " too large for bin " + str(b) + " with remaining volume " + str(filled_bin_volume[b]))
                     for j in ordered_bins:
                         print("i: " + str(i))
                         print("j: " + str(j))
+                        print("item volume " + str(item_volume[i]))
+                        print("new bin volume " + str(bin_volume[j]))
                         if j in filled_bins: 
                             print(str(j) + " is in filled_bins")
                             continue
                         if item_volume[i] > bin_volume[j]: 
-                            print(str(i) + " item volume > bin volume " + str(j)) 
+                            print("item " + str(i) + " of volume " + str(item_volume[i]) + " too large for new bin " + str(j) + " with volume " + str(bin_volume[j]))
                             continue
+                        print("item " + str(i) + " of volume " + str(item_volume[i]) + " fits in new bin " + str(j) + " with volume " + str(bin_volume[j]))
                         filled_bins[j] = [i]
                         filled_bin_volume[j] = bin_volume[j] - item_volume[i]
                         ordered_filled_bins.append(j)
                         quick_sort_3(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1) 
+                        print("filled bins: " + str(filled_bins))
+                        print("ordered filled bins: " + str(ordered_filled_bins))
+                        print("filled bin volume: " + str(filled_bin_volume))
                         break
                     break
 print(filled_bins)
@@ -201,7 +215,42 @@ cost = 0
 for b in filled_bins:
     cost+=bin_cost[b]
 print(cost)
+#print(ordered_bins)
+#print(ordered_filled_bins)
 
 
+unfilled_bins = [] 
+for j in ordered_bins: 
+    if j not in ordered_filled_bins: 
+        unfilled_bins.append(j)
+#print(unfilled_bins)
+#print(item_volume)
 
+
+for b in ordered_filled_bins: 
+    v_b = 0 
+    for i in filled_bins[b]: 
+        v_b += item_volume[i]
+#    print(v_b)
+    for k in unfilled_bins:
+#        print( "k: " + str(k) + " volume: " + str(bin_volume[k]))
+#        print( "b: " + str(b) + " volume: " + str(bin_volume[b]))
+#        print(v_b)
+#        print( "k: " + str(k) + " bin cost: " + str(bin_cost[k]))
+#        print( "b: " + str(b) + " bin cost: " + str(bin_cost[b]))
+        if (bin_volume[k] >= v_b) and (bin_cost[k] < bin_cost[b]): 
+            filled_bins[k] = filled_bins[b] 
+            filled_bin_volume[k] = bin_volume[k] - v_b
+            ordered_filled_bins.append(k)
+            del filled_bins[b]
+            del filled_bin_volume[b] 
+            ordered_filled_bins.remove(b)
+
+#print(filled_bins)
+#print(filled_bin_volume)
+#print(ordered_filled_bins)
+cost = 0
+for b in filled_bins: 
+    cost += bin_cost[b]
+#print(cost)
 
