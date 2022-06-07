@@ -1,3 +1,4 @@
+#this file defines ordering functions that are used in binpacking2
 
 #sorting items according to non-increasing order of volume
 def partition_1(volume_dict, item_list, start, end): 

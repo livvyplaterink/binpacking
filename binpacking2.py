@@ -1,3 +1,5 @@
+#this file executes the heuristic: orders the items and bins, places the items in the bins, and then performs a postprocessing step (currently the postprocessing step is executed 3 times in order to double check the cost but the extra postprocessing steps have thus far not changed the cost)
+
 import random
 from sorting import *
 
