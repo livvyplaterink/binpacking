@@ -74,6 +74,31 @@ def bin_sort_volume(cv_dict, volume_dict, bin_list, start, end):
     bin_sort_volume(cv_dict, volume_dict, bin_list, start, p-1)
     bin_sort_volume(cv_dict, volume_dict, bin_list, p+1, end)
 
+#alternate sorting for S
+def partition_6(cv_dict, volume_dict, bin_list, start, end):
+    pivot_cv = cv_dict[bin_list[start]]
+    pivot_v = volume_dict[bin_list[start]]
+    low = start + 1
+    high = end
+    while True:
+        while low <= high and ((volume_dict[bin_list[high]] > pivot_v) or ((volume_dict[bin_list[high]] == pivot_v) and (cv_dict[bin_list[high]] >= pivot_cv))):
+            high = high - 1
+        while low <= high and ((volume_dict[bin_list[low]] < pivot_v) or ((volume_dict[bin_list[low]] == pivot_v) and (cv_dict[bin_list[low]] <= pivot_cv))):
+            low = low + 1
+        if low <= high:
+            bin_list[low], bin_list[high] = bin_list[high], bin_list[low]
+        else:
+            break
+    bin_list[start], bin_list[high] = bin_list[high], bin_list[start]
+    return high
+
+def bin_sort_volume2(cv_dict, volume_dict, bin_list, start, end):
+    if start >= end:
+        return
+    p = partition_6(cv_dict, volume_dict, bin_list, start, end)
+    bin_sort_volume2(cv_dict, volume_dict, bin_list, start, p-1)
+    bin_sort_volume2(cv_dict, volume_dict, bin_list, p+1, end)
+
 #orders unfilled bins by non-decreasing order of cost and non-increasing order of volume when the costs are equal 
 def partition_4(cost_dict, volume_dict, bin_list, start, end): 
     pivot_c = cost_dict[bin_list[start]]

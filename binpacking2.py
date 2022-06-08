@@ -4,14 +4,14 @@ import random
 from sorting import *
 
 #randomly choosing the number of items from a list 
-item_number_list = [1000, 1200, 1300, 800, 900]
+item_number_list = [500, 600, 700, 800, 900]
 item_number = random.choice(item_number_list)
 print(item_number)
 
 #randomly assigning volumes valued between 1 and 20 to the items
 item_volume = {}
 for i in range(item_number):
-    item_volume["i" + str(i+1)] = random.randint(1, 20)
+    item_volume["i" + str(i+1)] = random.randint(1, 40)
 print(item_volume)
 
 #choosing the number of bins (number of items / 2) 
@@ -21,8 +21,8 @@ bin_number = int(item_number / 2)
 bin_volume = {}
 bin_cost = {}
 for i in range(bin_number):
-    bin_volume["b" + str(i+1)] = random.randint(20, 60)
-    bin_cost["b" + str(i+1)] = random.randint(1, 10)
+    bin_volume["b" + str(i+1)] = random.randint(50, 80)
+    bin_cost["b" + str(i+1)] = random.randint(1, 20)
 print(bin_volume)
 print(bin_cost)
 
@@ -32,6 +32,15 @@ print(bin_cost)
 #bin_volume = {'b1': 42, 'b2': 41, 'b3': 23, 'b4': 40, 'b5': 27, 'b6': 56, 'b7': 53, 'b8': 59, 'b9': 44, 'b10': 20, 'b11': 42, 'b12': 41, 'b13': 22, 'b14': 34, 'b15': 26, 'b16': 52, 'b17': 36, 'b18': 20, 'b19': 38, 'b20': 36, 'b21': 40, 'b22': 57, 'b23': 25, 'b24': 56, 'b25': 58, 'b26': 58, 'b27': 45, 'b28': 51, 'b29': 54, 'b30': 44, 'b31': 41, 'b32': 39, 'b33': 46, 'b34': 38, 'b35': 40, 'b36': 36, 'b37': 26, 'b38': 56, 'b39': 34, 'b40': 53, 'b41': 41, 'b42': 52, 'b43': 31, 'b44': 51, 'b45': 53, 'b46': 60, 'b47': 51, 'b48': 42, 'b49': 51, 'b50': 49, 'b51': 59, 'b52': 58, 'b53': 60, 'b54': 36, 'b55': 31, 'b56': 58, 'b57': 51, 'b58': 46, 'b59': 29, 'b60': 44, 'b61': 56, 'b62': 37, 'b63': 56, 'b64': 20, 'b65': 55, 'b66': 37, 'b67': 49, 'b68': 35, 'b69': 39, 'b70': 43, 'b71': 60, 'b72': 25, 'b73': 44, 'b74': 31, 'b75': 20, 'b76': 54, 'b77': 52, 'b78': 53, 'b79': 56, 'b80': 55, 'b81': 31, 'b82': 40, 'b83': 53, 'b84': 20, 'b85': 56, 'b86': 25, 'b87': 48, 'b88': 25, 'b89': 56, 'b90': 27, 'b91': 47, 'b92': 38, 'b93': 32, 'b94': 58, 'b95': 34, 'b96': 22, 'b97': 22, 'b98': 43, 'b99': 36, 'b100': 49, 'b101': 42, 'b102': 30, 'b103': 20, 'b104': 42, 'b105': 56, 'b106': 37, 'b107': 52, 'b108': 25, 'b109': 25, 'b110': 34, 'b111': 38, 'b112': 44, 'b113': 41, 'b114': 44, 'b115': 35, 'b116': 41, 'b117': 29, 'b118': 52, 'b119': 32, 'b120': 25, 'b121': 49, 'b122': 27, 'b123': 52, 'b124': 22, 'b125': 30, 'b126': 57, 'b127': 42, 'b128': 23, 'b129': 21, 'b130': 24, 'b131': 26, 'b132': 27, 'b133': 23, 'b134': 43, 'b135': 34, 'b136': 52, 'b137': 59, 'b138': 37, 'b139': 50, 'b140': 36, 'b141': 40, 'b142': 46, 'b143': 60, 'b144': 25, 'b145': 58, 'b146': 34, 'b147': 42, 'b148': 49, 'b149': 39, 'b150': 38, 'b151': 46, 'b152': 39, 'b153': 40, 'b154': 32, 'b155': 56, 'b156': 26, 'b157': 53, 'b158': 52, 'b159': 27, 'b160': 37, 'b161': 39, 'b162': 41, 'b163': 60, 'b164': 46, 'b165': 31, 'b166': 55, 'b167': 54, 'b168': 38, 'b169': 36, 'b170': 36, 'b171': 51, 'b172': 35, 'b173': 27, 'b174': 56, 'b175': 60, 'b176': 38, 'b177': 21, 'b178': 53, 'b179': 44, 'b180': 28, 'b181': 40, 'b182': 30, 'b183': 60, 'b184': 56, 'b185': 45, 'b186': 28, 'b187': 33, 'b188': 36, 'b189': 36, 'b190': 21, 'b191': 44, 'b192': 43, 'b193': 27, 'b194': 32, 'b195': 53, 'b196': 57, 'b197': 45, 'b198': 60, 'b199': 58, 'b200': 46, 'b201': 53, 'b202': 48, 'b203': 56, 'b204': 41, 'b205': 42, 'b206': 35, 'b207': 35, 'b208': 60, 'b209': 50, 'b210': 20, 'b211': 45, 'b212': 46, 'b213': 30, 'b214': 36, 'b215': 37, 'b216': 32, 'b217': 59, 'b218': 60, 'b219': 47, 'b220': 56, 'b221': 43, 'b222': 52, 'b223': 43, 'b224': 54, 'b225': 25, 'b226': 21, 'b227': 41, 'b228': 22, 'b229': 30, 'b230': 36, 'b231': 50, 'b232': 46, 'b233': 39, 'b234': 58, 'b235': 35, 'b236': 40, 'b237': 58, 'b238': 51, 'b239': 48, 'b240': 44, 'b241': 56, 'b242': 28, 'b243': 34, 'b244': 30, 'b245': 34, 'b246': 40, 'b247': 58, 'b248': 27, 'b249': 59, 'b250': 34, 'b251': 43, 'b252': 22, 'b253': 34, 'b254': 39, 'b255': 51, 'b256': 36, 'b257': 56, 'b258': 22, 'b259': 60, 'b260': 35, 'b261': 43, 'b262': 25, 'b263': 37, 'b264': 46, 'b265': 49, 'b266': 55, 'b267': 54, 'b268': 32, 'b269': 45, 'b270': 37, 'b271': 20, 'b272': 35, 'b273': 52, 'b274': 49, 'b275': 56, 'b276': 48, 'b277': 27, 'b278': 30, 'b279': 41, 'b280': 24, 'b281': 35, 'b282': 26, 'b283': 58, 'b284': 26, 'b285': 50, 'b286': 23, 'b287': 54, 'b288': 43, 'b289': 48, 'b290': 36, 'b291': 46, 'b292': 57, 'b293': 58, 'b294': 32, 'b295': 55, 'b296': 35, 'b297': 27, 'b298': 55, 'b299': 20, 'b300': 48}
 
 #bin_cost = {'b1': 1, 'b2': 3, 'b3': 1, 'b4': 8, 'b5': 3, 'b6': 5, 'b7': 6, 'b8': 5, 'b9': 10, 'b10': 10, 'b11': 4, 'b12': 5, 'b13': 9, 'b14': 9, 'b15': 2, 'b16': 5, 'b17': 10, 'b18': 7, 'b19': 1, 'b20': 5, 'b21': 4, 'b22': 2, 'b23': 4, 'b24': 1, 'b25': 10, 'b26': 2, 'b27': 4, 'b28': 10, 'b29': 7, 'b30': 5, 'b31': 10, 'b32': 9, 'b33': 7, 'b34': 10, 'b35': 2, 'b36': 9, 'b37': 2, 'b38': 9, 'b39': 1, 'b40': 1, 'b41': 8, 'b42': 6, 'b43': 4, 'b44': 3, 'b45': 1, 'b46': 7, 'b47': 5, 'b48': 3, 'b49': 7, 'b50': 7, 'b51': 3, 'b52': 5, 'b53': 6, 'b54': 1, 'b55': 1, 'b56': 9, 'b57': 7, 'b58': 8, 'b59': 8, 'b60': 1, 'b61': 3, 'b62': 4, 'b63': 8, 'b64': 8, 'b65': 9, 'b66': 3, 'b67': 8, 'b68': 7, 'b69': 5, 'b70': 2, 'b71': 5, 'b72': 2, 'b73': 4, 'b74': 8, 'b75': 7, 'b76': 2, 'b77': 5, 'b78': 8, 'b79': 2, 'b80': 1, 'b81': 1, 'b82': 6, 'b83': 7, 'b84': 1, 'b85': 8, 'b86': 7, 'b87': 2, 'b88': 3, 'b89': 10, 'b90': 9, 'b91': 10, 'b92': 1, 'b93': 6, 'b94': 4, 'b95': 10, 'b96': 4, 'b97': 6, 'b98': 9, 'b99': 1, 'b100': 4, 'b101': 1, 'b102': 7, 'b103': 5, 'b104': 1, 'b105': 7, 'b106': 6, 'b107': 5, 'b108': 4, 'b109': 7, 'b110': 9, 'b111': 1, 'b112': 4, 'b113': 2, 'b114': 8, 'b115': 3, 'b116': 2, 'b117': 6, 'b118': 1, 'b119': 10, 'b120': 4, 'b121': 7, 'b122': 2, 'b123': 8, 'b124': 4, 'b125': 4, 'b126': 5, 'b127': 8, 'b128': 8, 'b129': 3, 'b130': 5, 'b131': 5, 'b132': 7, 'b133': 4, 'b134': 7, 'b135': 10, 'b136': 6, 'b137': 9, 'b138': 10, 'b139': 7, 'b140': 3, 'b141': 3, 'b142': 7, 'b143': 6, 'b144': 3, 'b145': 10, 'b146': 4, 'b147': 7, 'b148': 7, 'b149': 9, 'b150': 8, 'b151': 1, 'b152': 7, 'b153': 4, 'b154': 3, 'b155': 5, 'b156': 10, 'b157': 5, 'b158': 3, 'b159': 3, 'b160': 8, 'b161': 4, 'b162': 10, 'b163': 9, 'b164': 2, 'b165': 6, 'b166': 1, 'b167': 5, 'b168': 5, 'b169': 8, 'b170': 6, 'b171': 10, 'b172': 8, 'b173': 10, 'b174': 3, 'b175': 2, 'b176': 1, 'b177': 8, 'b178': 7, 'b179': 2, 'b180': 5, 'b181': 1, 'b182': 7, 'b183': 2, 'b184': 10, 'b185': 3, 'b186': 7, 'b187': 10, 'b188': 9, 'b189': 7, 'b190': 2, 'b191': 10, 'b192': 2, 'b193': 6, 'b194': 2, 'b195': 6, 'b196': 2, 'b197': 4, 'b198': 5, 'b199': 4, 'b200': 8, 'b201': 1, 'b202': 5, 'b203': 8, 'b204': 7, 'b205': 9, 'b206': 9, 'b207': 3, 'b208': 10, 'b209': 2, 'b210': 5, 'b211': 8, 'b212': 5, 'b213': 7, 'b214': 9, 'b215': 5, 'b216': 1, 'b217': 10, 'b218': 3, 'b219': 3, 'b220': 5, 'b221': 8, 'b222': 8, 'b223': 10, 'b224': 4, 'b225': 7, 'b226': 1, 'b227': 4, 'b228': 4, 'b229': 8, 'b230': 1, 'b231': 9, 'b232': 4, 'b233': 9, 'b234': 5, 'b235': 8, 'b236': 7, 'b237': 7, 'b238': 1, 'b239': 3, 'b240': 4, 'b241': 8, 'b242': 10, 'b243': 5, 'b244': 7, 'b245': 7, 'b246': 8, 'b247': 5, 'b248': 3, 'b249': 8, 'b250': 3, 'b251': 10, 'b252': 3, 'b253': 7, 'b254': 8, 'b255': 4, 'b256': 7, 'b257': 8, 'b258': 2, 'b259': 9, 'b260': 1, 'b261': 10, 'b262': 4, 'b263': 8, 'b264': 4, 'b265': 7, 'b266': 10, 'b267': 8, 'b268': 7, 'b269': 5, 'b270': 3, 'b271': 4, 'b272': 10, 'b273': 5, 'b274': 7, 'b275': 10, 'b276': 7, 'b277': 3, 'b278': 1, 'b279': 6, 'b280': 3, 'b281': 5, 'b282': 6, 'b283': 9, 'b284': 7, 'b285': 4, 'b286': 6, 'b287': 7, 'b288': 9, 'b289': 10, 'b290': 5, 'b291': 3, 'b292': 3, 'b293': 1, 'b294': 4, 'b295': 1, 'b296': 9, 'b297': 7, 'b298': 7, 'b299': 5, 'b300': 2} 
+
+#item_volume = { "i1" : 50, "i2" : 60, "i3" : 30, "i4" : 20, "i5" : 25, "i6" : 10, "i7" : 30, "i8" : 50, "i9" : 14}
+#bin_volume = {"b1" : 60, "b2" : 80, "b3" : 100, "b4" : 120, "b5" : 120, "b6" : 80, "b7" : 100}
+#bin_cost = {"b1" : 3, "b2" : 4, "b3" : 3, "b4" : 8, "b5" : 6, "b6" : 5.5, "b7" : 4}
+
+item_volume = {'i1': 14, 'i2': 22, 'i3': 1, 'i4': 7, 'i5': 24, 'i6': 39, 'i7': 15, 'i8': 20, 'i9': 5, 'i10': 1, 'i11': 23, 'i12': 40, 'i13': 29, 'i14': 39, 'i15': 1, 'i16': 29, 'i17': 21, 'i18': 9, 'i19': 16, 'i20': 39, 'i21': 23, 'i22': 37, 'i23': 2, 'i24': 31, 'i25': 19, 'i26': 12, 'i27': 16, 'i28': 20, 'i29': 33, 'i30': 40, 'i31': 38, 'i32': 17, 'i33': 7, 'i34': 13, 'i35': 4, 'i36': 22, 'i37': 30, 'i38': 22, 'i39': 18, 'i40': 14, 'i41': 23, 'i42': 21, 'i43': 31, 'i44': 21, 'i45': 33, 'i46': 28, 'i47': 2, 'i48': 36, 'i49': 8, 'i50': 21, 'i51': 39, 'i52': 34, 'i53': 23, 'i54': 37, 'i55': 31, 'i56': 6, 'i57': 39, 'i58': 25, 'i59': 25, 'i60': 19, 'i61': 2, 'i62': 21, 'i63': 39, 'i64': 6, 'i65': 25, 'i66': 26, 'i67': 31, 'i68': 30, 'i69': 15, 'i70': 22, 'i71': 8, 'i72': 26, 'i73': 29, 'i74': 18, 'i75': 34, 'i76': 19, 'i77': 39, 'i78': 24, 'i79': 31, 'i80': 18, 'i81': 39, 'i82': 17, 'i83': 32, 'i84': 1, 'i85': 34, 'i86': 15, 'i87': 15, 'i88': 18, 'i89': 4, 'i90': 22, 'i91': 4, 'i92': 3, 'i93': 6, 'i94': 17, 'i95': 29, 'i96': 38, 'i97': 31, 'i98': 16, 'i99': 26, 'i100': 5, 'i101': 13, 'i102': 29, 'i103': 35, 'i104': 34, 'i105': 38, 'i106': 5, 'i107': 20, 'i108': 37, 'i109': 6, 'i110': 13, 'i111': 32, 'i112': 21, 'i113': 30, 'i114': 1, 'i115': 31, 'i116': 28, 'i117': 26, 'i118': 25, 'i119': 25, 'i120': 38, 'i121': 33, 'i122': 19, 'i123': 26, 'i124': 2, 'i125': 20, 'i126': 39, 'i127': 13, 'i128': 21, 'i129': 26, 'i130': 26, 'i131': 13, 'i132': 38, 'i133': 17, 'i134': 33, 'i135': 17, 'i136': 25, 'i137': 30, 'i138': 10, 'i139': 14, 'i140': 29, 'i141': 21, 'i142': 26, 'i143': 13, 'i144': 12, 'i145': 4, 'i146': 40, 'i147': 3, 'i148': 18, 'i149': 16, 'i150': 26, 'i151': 22, 'i152': 33, 'i153': 1, 'i154': 16, 'i155': 21, 'i156': 7, 'i157': 17, 'i158': 28, 'i159': 25, 'i160': 17, 'i161': 26, 'i162': 11, 'i163': 9, 'i164': 39, 'i165': 9, 'i166': 32, 'i167': 24, 'i168': 11, 'i169': 21, 'i170': 37, 'i171': 37, 'i172': 3, 'i173': 11, 'i174': 29, 'i175': 19, 'i176': 36, 'i177': 19, 'i178': 16, 'i179': 38, 'i180': 10, 'i181': 23, 'i182': 28, 'i183': 8, 'i184': 29, 'i185': 7, 'i186': 15, 'i187': 35, 'i188': 12, 'i189': 10, 'i190': 37, 'i191': 1, 'i192': 5, 'i193': 35, 'i194': 30, 'i195': 27, 'i196': 26, 'i197': 25, 'i198': 21, 'i199': 36, 'i200': 38, 'i201': 1, 'i202': 10, 'i203': 5, 'i204': 6, 'i205': 28, 'i206': 33, 'i207': 32, 'i208': 27, 'i209': 26, 'i210': 28, 'i211': 16, 'i212': 17, 'i213': 3, 'i214': 27, 'i215': 5, 'i216': 1, 'i217': 19, 'i218': 8, 'i219': 2, 'i220': 36, 'i221': 20, 'i222': 3, 'i223': 38, 'i224': 14, 'i225': 11, 'i226': 6, 'i227': 37, 'i228': 1, 'i229': 21, 'i230': 30, 'i231': 27, 'i232': 24, 'i233': 8, 'i234': 4, 'i235': 30, 'i236': 34, 'i237': 3, 'i238': 6, 'i239': 17, 'i240': 18, 'i241': 28, 'i242': 3, 'i243': 26, 'i244': 18, 'i245': 35, 'i246': 10, 'i247': 11, 'i248': 15, 'i249': 23, 'i250': 9, 'i251': 32, 'i252': 28, 'i253': 29, 'i254': 32, 'i255': 11, 'i256': 14, 'i257': 8, 'i258': 13, 'i259': 4, 'i260': 33, 'i261': 26, 'i262': 21, 'i263': 9, 'i264': 38, 'i265': 8, 'i266': 18, 'i267': 30, 'i268': 23, 'i269': 33, 'i270': 12, 'i271': 3, 'i272': 39, 'i273': 40, 'i274': 38, 'i275': 11, 'i276': 26, 'i277': 20, 'i278': 29, 'i279': 12, 'i280': 6, 'i281': 14, 'i282': 25, 'i283': 25, 'i284': 26, 'i285': 24, 'i286': 10, 'i287': 7, 'i288': 37, 'i289': 30, 'i290': 17, 'i291': 7, 'i292': 33, 'i293': 25, 'i294': 29, 'i295': 7, 'i296': 37, 'i297': 25, 'i298': 34, 'i299': 14, 'i300': 23, 'i301': 36, 'i302': 16, 'i303': 38, 'i304': 29, 'i305': 35, 'i306': 39, 'i307': 32, 'i308': 20, 'i309': 8, 'i310': 6, 'i311': 8, 'i312': 31, 'i313': 9, 'i314': 26, 'i315': 26, 'i316': 1, 'i317': 22, 'i318': 35, 'i319': 3, 'i320': 27, 'i321': 7, 'i322': 28, 'i323': 28, 'i324': 20, 'i325': 18, 'i326': 22, 'i327': 7, 'i328': 36, 'i329': 22, 'i330': 3, 'i331': 39, 'i332': 4, 'i333': 7, 'i334': 17, 'i335': 34, 'i336': 8, 'i337': 32, 'i338': 25, 'i339': 28, 'i340': 21, 'i341': 31, 'i342': 24, 'i343': 16, 'i344': 7, 'i345': 33, 'i346': 31, 'i347': 5, 'i348': 6, 'i349': 4, 'i350': 1, 'i351': 29, 'i352': 10, 'i353': 34, 'i354': 14, 'i355': 20, 'i356': 16, 'i357': 2, 'i358': 21, 'i359': 3, 'i360': 15, 'i361': 40, 'i362': 25, 'i363': 27, 'i364': 27, 'i365': 3, 'i366': 38, 'i367': 6, 'i368': 23, 'i369': 25, 'i370': 25, 'i371': 17, 'i372': 33, 'i373': 24, 'i374': 2, 'i375': 9, 'i376': 5, 'i377': 33, 'i378': 11, 'i379': 31, 'i380': 7, 'i381': 19, 'i382': 13, 'i383': 10, 'i384': 17, 'i385': 22, 'i386': 31, 'i387': 30, 'i388': 21, 'i389': 31, 'i390': 38, 'i391': 9, 'i392': 34, 'i393': 2, 'i394': 19, 'i395': 1, 'i396': 10, 'i397': 5, 'i398': 33, 'i399': 13, 'i400': 16, 'i401': 20, 'i402': 27, 'i403': 25, 'i404': 15, 'i405': 28, 'i406': 15, 'i407': 13, 'i408': 8, 'i409': 17, 'i410': 21, 'i411': 20, 'i412': 21, 'i413': 26, 'i414': 32, 'i415': 14, 'i416': 20, 'i417': 11, 'i418': 7, 'i419': 28, 'i420': 31, 'i421': 26, 'i422': 21, 'i423': 29, 'i424': 39, 'i425': 34, 'i426': 24, 'i427': 26, 'i428': 17, 'i429': 24, 'i430': 2, 'i431': 24, 'i432': 19, 'i433': 27, 'i434': 36, 'i435': 20, 'i436': 1, 'i437': 2, 'i438': 34, 'i439': 3, 'i440': 33, 'i441': 8, 'i442': 23, 'i443': 21, 'i444': 3, 'i445': 25, 'i446': 36, 'i447': 33, 'i448': 6, 'i449': 27, 'i450': 25, 'i451': 33, 'i452': 35, 'i453': 9, 'i454': 17, 'i455': 13, 'i456': 37, 'i457': 19, 'i458': 3, 'i459': 2, 'i460': 39, 'i461': 28, 'i462': 5, 'i463': 35, 'i464': 5, 'i465': 5, 'i466': 29, 'i467': 31, 'i468': 13, 'i469': 34, 'i470': 5, 'i471': 20, 'i472': 38, 'i473': 26, 'i474': 4, 'i475': 36, 'i476': 6, 'i477': 7, 'i478': 40, 'i479': 37, 'i480': 29, 'i481': 30, 'i482': 26, 'i483': 7, 'i484': 5, 'i485': 10, 'i486': 35, 'i487': 23, 'i488': 15, 'i489': 21, 'i490': 38, 'i491': 17, 'i492': 40, 'i493': 5, 'i494': 25, 'i495': 15, 'i496': 34, 'i497': 27, 'i498': 40, 'i499': 7, 'i500': 1, 'i501': 2, 'i502': 8, 'i503': 25, 'i504': 40, 'i505': 16, 'i506': 15, 'i507': 26, 'i508': 11, 'i509': 2, 'i510': 38, 'i511': 2, 'i512': 1, 'i513': 14, 'i514': 37, 'i515': 39, 'i516': 8, 'i517': 12, 'i518': 18, 'i519': 36, 'i520': 11, 'i521': 35, 'i522': 26, 'i523': 30, 'i524': 2, 'i525': 25, 'i526': 10, 'i527': 15, 'i528': 26, 'i529': 19, 'i530': 34, 'i531': 32, 'i532': 38, 'i533': 8, 'i534': 10, 'i535': 16, 'i536': 27, 'i537': 2, 'i538': 21, 'i539': 7, 'i540': 38, 'i541': 34, 'i542': 19, 'i543': 30, 'i544': 21, 'i545': 10, 'i546': 26, 'i547': 8, 'i548': 31, 'i549': 20, 'i550': 1, 'i551': 1, 'i552': 7, 'i553': 11, 'i554': 34, 'i555': 38, 'i556': 28, 'i557': 29, 'i558': 6, 'i559': 29, 'i560': 8, 'i561': 34, 'i562': 29, 'i563': 38, 'i564': 25, 'i565': 39, 'i566': 32, 'i567': 20, 'i568': 30, 'i569': 19, 'i570': 20, 'i571': 13, 'i572': 9, 'i573': 16, 'i574': 1, 'i575': 32, 'i576': 37, 'i577': 17, 'i578': 18, 'i579': 17, 'i580': 7, 'i581': 11, 'i582': 34, 'i583': 39, 'i584': 34, 'i585': 34, 'i586': 15, 'i587': 9, 'i588': 15, 'i589': 28, 'i590': 26, 'i591': 2, 'i592': 4, 'i593': 40, 'i594': 23, 'i595': 17, 'i596': 9, 'i597': 17, 'i598': 38, 'i599': 3, 'i600': 6}
+bin_volume = {'b1': 68, 'b2': 61, 'b3': 61, 'b4': 62, 'b5': 58, 'b6': 75, 'b7': 60, 'b8': 73, 'b9': 65, 'b10': 71, 'b11': 64, 'b12': 70, 'b13': 51, 'b14': 63, 'b15': 72, 'b16': 54, 'b17': 53, 'b18': 60, 'b19': 53, 'b20': 62, 'b21': 60, 'b22': 73, 'b23': 56, 'b24': 53, 'b25': 53, 'b26': 52, 'b27': 52, 'b28': 66, 'b29': 79, 'b30': 57, 'b31': 78, 'b32': 67, 'b33': 79, 'b34': 75, 'b35': 58, 'b36': 79, 'b37': 77, 'b38': 79, 'b39': 57, 'b40': 65, 'b41': 65, 'b42': 72, 'b43': 53, 'b44': 54, 'b45': 51, 'b46': 76, 'b47': 58, 'b48': 57, 'b49': 51, 'b50': 63, 'b51': 51, 'b52': 50, 'b53': 79, 'b54': 78, 'b55': 77, 'b56': 78, 'b57': 56, 'b58': 77, 'b59': 67, 'b60': 53, 'b61': 62, 'b62': 63, 'b63': 77, 'b64': 55, 'b65': 62, 'b66': 50, 'b67': 61, 'b68': 74, 'b69': 55, 'b70': 68, 'b71': 55, 'b72': 74, 'b73': 77, 'b74': 65, 'b75': 52, 'b76': 53, 'b77': 77, 'b78': 52, 'b79': 79, 'b80': 52, 'b81': 58, 'b82': 72, 'b83': 77, 'b84': 53, 'b85': 63, 'b86': 65, 'b87': 50, 'b88': 79, 'b89': 68, 'b90': 64, 'b91': 71, 'b92': 55, 'b93': 72, 'b94': 53, 'b95': 71, 'b96': 73, 'b97': 58, 'b98': 56, 'b99': 60, 'b100': 68, 'b101': 71, 'b102': 75, 'b103': 52, 'b104': 57, 'b105': 78, 'b106': 75, 'b107': 56, 'b108': 70, 'b109': 52, 'b110': 50, 'b111': 73, 'b112': 61, 'b113': 64, 'b114': 75, 'b115': 67, 'b116': 80, 'b117': 71, 'b118': 76, 'b119': 75, 'b120': 78, 'b121': 51, 'b122': 66, 'b123': 50, 'b124': 53, 'b125': 60, 'b126': 71, 'b127': 75, 'b128': 64, 'b129': 58, 'b130': 72, 'b131': 62, 'b132': 73, 'b133': 73, 'b134': 70, 'b135': 54, 'b136': 54, 'b137': 50, 'b138': 52, 'b139': 72, 'b140': 55, 'b141': 58, 'b142': 74, 'b143': 62, 'b144': 73, 'b145': 55, 'b146': 64, 'b147': 59, 'b148': 56, 'b149': 50, 'b150': 69, 'b151': 59, 'b152': 66, 'b153': 72, 'b154': 70, 'b155': 54, 'b156': 78, 'b157': 79, 'b158': 70, 'b159': 55, 'b160': 66, 'b161': 58, 'b162': 50, 'b163': 50, 'b164': 68, 'b165': 54, 'b166': 69, 'b167': 72, 'b168': 73, 'b169': 56, 'b170': 65, 'b171': 69, 'b172': 56, 'b173': 65, 'b174': 58, 'b175': 55, 'b176': 66, 'b177': 74, 'b178': 54, 'b179': 54, 'b180': 77, 'b181': 68, 'b182': 71, 'b183': 76, 'b184': 69, 'b185': 60, 'b186': 65, 'b187': 52, 'b188': 76, 'b189': 75, 'b190': 69, 'b191': 77, 'b192': 62, 'b193': 53, 'b194': 70, 'b195': 78, 'b196': 62, 'b197': 75, 'b198': 73, 'b199': 80, 'b200': 72, 'b201': 62, 'b202': 70, 'b203': 67, 'b204': 57, 'b205': 50, 'b206': 56, 'b207': 52, 'b208': 58, 'b209': 54, 'b210': 79, 'b211': 52, 'b212': 59, 'b213': 72, 'b214': 57, 'b215': 53, 'b216': 72, 'b217': 50, 'b218': 52, 'b219': 79, 'b220': 80, 'b221': 67, 'b222': 53, 'b223': 79, 'b224': 56, 'b225': 78, 'b226': 79, 'b227': 80, 'b228': 67, 'b229': 65, 'b230': 76, 'b231': 52, 'b232': 57, 'b233': 69, 'b234': 77, 'b235': 56, 'b236': 66, 'b237': 80, 'b238': 80, 'b239': 56, 'b240': 67, 'b241': 68, 'b242': 77, 'b243': 59, 'b244': 72, 'b245': 59, 'b246': 65, 'b247': 73, 'b248': 60, 'b249': 59, 'b250': 77, 'b251': 57, 'b252': 57, 'b253': 67, 'b254': 55, 'b255': 66, 'b256': 74, 'b257': 65, 'b258': 79, 'b259': 57, 'b260': 62, 'b261': 61, 'b262': 77, 'b263': 61, 'b264': 76, 'b265': 77, 'b266': 63, 'b267': 77, 'b268': 77, 'b269': 62, 'b270': 61, 'b271': 80, 'b272': 80, 'b273': 65, 'b274': 65, 'b275': 68, 'b276': 66, 'b277': 77, 'b278': 62, 'b279': 63, 'b280': 80, 'b281': 70, 'b282': 80, 'b283': 79, 'b284': 68, 'b285': 61, 'b286': 58, 'b287': 79, 'b288': 64, 'b289': 59, 'b290': 68, 'b291': 71, 'b292': 62, 'b293': 57, 'b294': 74, 'b295': 69, 'b296': 59, 'b297': 70, 'b298': 75, 'b299': 75, 'b300': 74}
+
+bin_cost = {'b1': 18, 'b2': 10, 'b3': 15, 'b4': 17, 'b5': 3, 'b6': 2, 'b7': 6, 'b8': 5, 'b9': 6, 'b10': 15, 'b11': 13, 'b12': 16, 'b13': 11, 'b14': 17, 'b15': 5, 'b16': 11, 'b17': 9, 'b18': 2, 'b19': 17, 'b20': 8, 'b21': 16, 'b22': 7, 'b23': 7, 'b24': 17, 'b25': 17, 'b26': 13, 'b27': 16, 'b28': 10, 'b29': 5, 'b30': 8, 'b31': 10, 'b32': 14, 'b33': 1, 'b34': 14, 'b35': 14, 'b36': 1, 'b37': 8, 'b38': 1, 'b39': 4, 'b40': 7, 'b41': 5, 'b42': 4, 'b43': 1, 'b44': 4, 'b45': 20, 'b46': 16, 'b47': 11, 'b48': 8, 'b49': 13, 'b50': 3, 'b51': 18, 'b52': 13, 'b53': 11, 'b54': 17, 'b55': 19, 'b56': 17, 'b57': 18, 'b58': 3, 'b59': 5, 'b60': 10, 'b61': 7, 'b62': 6, 'b63': 12, 'b64': 19, 'b65': 18, 'b66': 20, 'b67': 3, 'b68': 2, 'b69': 14, 'b70': 1, 'b71': 11, 'b72': 10, 'b73': 18, 'b74': 14, 'b75': 5, 'b76': 2, 'b77': 5, 'b78': 1, 'b79': 11, 'b80': 3, 'b81': 3, 'b82': 14, 'b83': 6, 'b84': 4, 'b85': 7, 'b86': 20, 'b87': 2, 'b88': 18, 'b89': 7, 'b90': 4, 'b91': 17, 'b92': 6, 'b93': 18, 'b94': 11, 'b95': 16, 'b96': 8, 'b97': 10, 'b98': 15, 'b99': 13, 'b100': 17, 'b101': 1, 'b102': 17, 'b103': 12, 'b104': 1, 'b105': 10, 'b106': 5, 'b107': 9, 'b108': 12, 'b109': 7, 'b110': 19, 'b111': 12, 'b112': 17, 'b113': 4, 'b114': 18, 'b115': 10, 'b116': 10, 'b117': 17, 'b118': 2, 'b119': 1, 'b120': 14, 'b121': 13, 'b122': 11, 'b123': 15, 'b124': 18, 'b125': 11, 'b126': 9, 'b127': 6, 'b128': 3, 'b129': 6, 'b130': 14, 'b131': 12, 'b132': 19, 'b133': 18, 'b134': 18, 'b135': 6, 'b136': 15, 'b137': 17, 'b138': 5, 'b139': 4, 'b140': 8, 'b141': 2, 'b142': 2, 'b143': 12, 'b144': 12, 'b145': 3, 'b146': 20, 'b147': 3, 'b148': 3, 'b149': 16, 'b150': 3, 'b151': 4, 'b152': 19, 'b153': 16, 'b154': 15, 'b155': 5, 'b156': 16, 'b157': 20, 'b158': 9, 'b159': 4, 'b160': 1, 'b161': 5, 'b162': 16, 'b163': 2, 'b164': 8, 'b165': 12, 'b166': 7, 'b167': 9, 'b168': 7, 'b169': 14, 'b170': 16, 'b171': 2, 'b172': 4, 'b173': 7, 'b174': 5, 'b175': 9, 'b176': 16, 'b177': 14, 'b178': 11, 'b179': 19, 'b180': 8, 'b181': 17, 'b182': 17, 'b183': 3, 'b184': 4, 'b185': 10, 'b186': 10, 'b187': 8, 'b188': 11, 'b189': 9, 'b190': 4, 'b191': 8, 'b192': 4, 'b193': 4, 'b194': 5, 'b195': 10, 'b196': 11, 'b197': 3, 'b198': 9, 'b199': 11, 'b200': 18, 'b201': 16, 'b202': 10, 'b203': 20, 'b204': 1, 'b205': 4, 'b206': 16, 'b207': 20, 'b208': 10, 'b209': 1, 'b210': 4, 'b211': 4, 'b212': 6, 'b213': 11, 'b214': 4, 'b215': 6, 'b216': 17, 'b217': 15, 'b218': 13, 'b219': 1, 'b220': 13, 'b221': 3, 'b222': 4, 'b223': 15, 'b224': 1, 'b225': 12, 'b226': 2, 'b227': 6, 'b228': 14, 'b229': 11, 'b230': 3, 'b231': 3, 'b232': 15, 'b233': 18, 'b234': 7, 'b235': 3, 'b236': 20, 'b237': 3, 'b238': 8, 'b239': 1, 'b240': 4, 'b241': 9, 'b242': 9, 'b243': 5, 'b244': 12, 'b245': 9, 'b246': 6, 'b247': 6, 'b248': 9, 'b249': 4, 'b250': 9, 'b251': 7, 'b252': 12, 'b253': 20, 'b254': 5, 'b255': 5, 'b256': 11, 'b257': 6, 'b258': 4, 'b259': 11, 'b260': 13, 'b261': 14, 'b262': 8, 'b263': 20, 'b264': 7, 'b265': 19, 'b266': 17, 'b267': 5, 'b268': 12, 'b269': 9, 'b270': 2, 'b271': 12, 'b272': 14, 'b273': 12, 'b274': 3, 'b275': 17, 'b276': 11, 'b277': 2, 'b278': 14, 'b279': 18, 'b280': 5, 'b281': 8, 'b282': 11, 'b283': 14, 'b284': 18, 'b285': 14, 'b286': 17, 'b287': 7, 'b288': 16, 'b289': 13, 'b290': 1, 'b291': 20, 'b292': 1, 'b293': 13, 'b294': 16, 'b295': 9, 'b296': 12, 'b297': 16, 'b298': 14, 'b299': 18, 'b300': 11} 
 
 
 
@@ -58,8 +67,6 @@ print("ordered bins " + str(ordered_bins))
 filled_bins = {}
 filled_bin_volume = {}
 ordered_filled_bins = []
-print(ordered_items)
-print(ordered_bins)
 
 
 #placing items in bins
@@ -82,15 +89,15 @@ for i in ordered_items:
             filled_bins[l] = [i]
             filled_bin_volume[l] = bin_volume[l] - item_volume[i]
             ordered_filled_bins.append(l)
-            #ordering bins in S according to non-increasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal  
-            bin_sort_volume(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
+            #ordering bins in S according to non-decreasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal  
+            bin_sort_volume2(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
             print("filled bins: " + str(filled_bins))
             print("ordered filled bins: " + str(ordered_filled_bins))
             print("filled bin volume: " + str(filled_bin_volume))
             break
 
     else: 
-        #if S is not empty, and if i can be accomodated into a bin in S, then place it into the bin in S with the max free space
+        #if S is not empty, and if i can be accomodated into a bin in S, then place it into the bin into the first bin in S that can accomodate i
         for b in ordered_filled_bins:
             print("i: " + str(i))
             print("b: " + str(b))
@@ -100,8 +107,8 @@ for i in ordered_items:
                 print("item " + str(i) + " of volume " + str(item_volume[i]) + " fits in bin " + str(b) + " with remaining volume " + str(filled_bin_volume[b]))
                 filled_bins[b].append(i)
                 filled_bin_volume[b] = filled_bin_volume[b] - item_volume[i]
-                #ordering bins in S according to non-increasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
-                bin_sort_volume(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
+                #ordering bins in S according to non-decreasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
+                bin_sort_volume2(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1)
                 print("filled bins: " + str(filled_bins))
                 print("ordered filled bins: " + str(ordered_filled_bins))
                 print("filled bin volume: " + str(filled_bin_volume))
@@ -126,8 +133,8 @@ for i in ordered_items:
                         filled_bins[j] = [i]
                         filled_bin_volume[j] = bin_volume[j] - item_volume[i]
                         ordered_filled_bins.append(j)
-                        #ordering bins in S according to non-increasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
-                        bin_sort_volume(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1) 
+                        #ordering bins in S according to non-decreasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
+                        bin_sort_volume2(cv_ratio, filled_bin_volume, ordered_filled_bins, 0, len(ordered_filled_bins) - 1) 
                         print("filled bins: " + str(filled_bins))
                         print("ordered filled bins: " + str(ordered_filled_bins))
                         print("filled bin volume: " + str(filled_bin_volume))
@@ -137,7 +144,7 @@ print(filled_bins)
 cost = 0
 for b in filled_bins:
     cost+=bin_cost[b]
-print(cost)
+print("cost after filling bins: " + str(cost))
 
 
 #defining unfilled bin set K\S
@@ -145,66 +152,28 @@ unfilled_bins = []
 for j in ordered_bins: 
     if j not in ordered_filled_bins: 
         unfilled_bins.append(j)
-#print(unfilled_bins)
-#print(item_volume)
-
-
-print(ordered_filled_bins)
 
 print(item_volume)
 print(bin_volume)
 print(bin_cost)
+
+
+print(filled_bins)
+print(filled_bin_volume)
+for b in filled_bins: 
+    if filled_bin_volume[b] > 0: 
+        print("bin with extra space: " + str(b))
 
 print("original cost: " + str(cost))
 
 #ordering bins in K\S according to non-decreasing order of cost and non-increasing order of volume when costs are equal  
 bin_sort_cost(bin_cost, bin_volume, unfilled_bins, 0, len(unfilled_bins) -1)
 for n in range(len(ordered_filled_bins)):
-    #print(n)
     b = ordered_filled_bins[n]
-    #print(b)
     v_b = 0
     for i in filled_bins[b]:
         v_b += item_volume[i]
     for k in unfilled_bins:
-        #print("k: " + str(k) + " volume: " + str(bin_volume[k]))
-        #print( "bin: " + str(b) + " item volume: " + str(v_b))
-        #print( "k: " + str(k) + " bin cost: " + str(bin_cost[k]))
-        #print( "b: " + str(b) + " bin cost: " + str(bin_cost[b]))
-        if (bin_volume[k] >= v_b) and (bin_cost[k] < bin_cost[b]):
-            filled_bins[k] = filled_bins[b]
-            filled_bin_volume[k] = bin_volume[k] - v_b
-            del filled_bins[b]
-            del filled_bin_volume[b]
-            unfilled_bins.append(b)
-            unfilled_bins.remove(k)
-            #print(filled_bins)
-            #print(filled_bin_volume)
-            ordered_filled_bins[n] = k
-            #print(ordered_filled_bins)
-            bin_sort_cost(bin_cost, bin_volume, unfilled_bins, 0, len(unfilled_bins) -1)
-            #print(unfilled_bins)
-            break
-
-
-
-cost = 0
-for b in filled_bins: 
-    cost += bin_cost[b]
-print("final cost: " + str(cost))
-
-for n in range(len(ordered_filled_bins)):
-    #print(n)
-    b = ordered_filled_bins[n]
-    #print(b)
-    v_b = 0
-    for i in filled_bins[b]:
-        v_b += item_volume[i]
-    for k in unfilled_bins:
-        #print("k: " + str(k) + " volume: " + str(bin_volume[k]))
-        #print( "bin: " + str(b) + " item volume: " + str(v_b))
-        #print( "k: " + str(k) + " bin cost: " + str(bin_cost[k]))
-        #print( "b: " + str(b) + " bin cost: " + str(bin_cost[b]))
         if (bin_volume[k] >= v_b) and (bin_cost[k] < bin_cost[b]):
             print("k: " + str(k) + " volume: " + str(bin_volume[k]))
             print( "bin: " + str(b) + " item volume: " + str(v_b))
@@ -216,12 +185,36 @@ for n in range(len(ordered_filled_bins)):
             del filled_bin_volume[b]
             unfilled_bins.append(b)
             unfilled_bins.remove(k)
-            #print(filled_bins)
-            #print(filled_bin_volume)
             ordered_filled_bins[n] = k
-            #print(ordered_filled_bins)
             bin_sort_cost(bin_cost, bin_volume, unfilled_bins, 0, len(unfilled_bins) -1)
-            #print(unfilled_bins)
+            break
+
+
+
+cost = 0
+for b in filled_bins: 
+    cost += bin_cost[b]
+print("final cost: " + str(cost))
+
+for n in range(len(ordered_filled_bins)):
+    b = ordered_filled_bins[n]
+    v_b = 0
+    for i in filled_bins[b]:
+        v_b += item_volume[i]
+    for k in unfilled_bins:
+        if (bin_volume[k] >= v_b) and (bin_cost[k] < bin_cost[b]):
+            print("k: " + str(k) + " volume: " + str(bin_volume[k]))
+            print( "bin: " + str(b) + " item volume: " + str(v_b))
+            print( "k: " + str(k) + " bin cost: " + str(bin_cost[k]))
+            print( "b: " + str(b) + " bin cost: " + str(bin_cost[b]))
+            filled_bins[k] = filled_bins[b]
+            filled_bin_volume[k] = bin_volume[k] - v_b
+            del filled_bins[b]
+            del filled_bin_volume[b]
+            unfilled_bins.append(b)
+            unfilled_bins.remove(k)
+            ordered_filled_bins[n] = k
+            bin_sort_cost(bin_cost, bin_volume, unfilled_bins, 0, len(unfilled_bins) -1)
             break 
 
 for i in item_volume: 
@@ -238,17 +231,11 @@ for b in filled_bins:
 print("final cost: " + str(cost))
 
 for n in range(len(ordered_filled_bins)):
-    #print(n)
     b = ordered_filled_bins[n]
-    #print(b)
     v_b = 0
     for i in filled_bins[b]:
         v_b += item_volume[i]
     for k in unfilled_bins:
-        #print("k: " + str(k) + " volume: " + str(bin_volume[k]))
-        #print( "bin: " + str(b) + " item volume: " + str(v_b))
-        #print( "k: " + str(k) + " bin cost: " + str(bin_cost[k]))
-        #print( "b: " + str(b) + " bin cost: " + str(bin_cost[b]))
         if (bin_volume[k] >= v_b) and (bin_cost[k] < bin_cost[b]):
             print("k: " + str(k) + " volume: " + str(bin_volume[k]))
             print( "bin: " + str(b) + " item volume: " + str(v_b))
@@ -260,12 +247,8 @@ for n in range(len(ordered_filled_bins)):
             del filled_bin_volume[b]
             unfilled_bins.append(b)
             unfilled_bins.remove(k)
-            #print(filled_bins)
-            #print(filled_bin_volume)
             ordered_filled_bins[n] = k
-            #print(ordered_filled_bins)
             bin_sort_cost(bin_cost, bin_volume, unfilled_bins, 0, len(unfilled_bins) -1)
-            #print(unfilled_bins)
             break
 
 cost = 0
@@ -273,4 +256,18 @@ for b in filled_bins:
     cost += bin_cost[b]
 print("final cost: " + str(cost))
 
-print(filled_bins)
+#print(filled_bins)
+
+#print(cv_ratio)
+item_sort(item_volume, ordered_items, 0, len(ordered_items)-1)
+#print("ordered items: " +str(ordered_items))
+bin_sort_cv(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
+#print("ordered bins by cv" +str(ordered_bins))
+bin_sort_volume(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
+#print("ordered bins by volume: " +str(ordered_bins))
+bin_sort_volume2(cv_ratio, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
+#print("ordered bins by volume 2: " + str(ordered_bins))
+bin_sort_cost(bin_cost, bin_volume, ordered_bins, 0, len(ordered_bins)-1)
+#print("ordered bins by cost 1: " + str(ordered_bins))
+bin_sort_cost2(bin_cost, bin_volume, ordered_bins, 0, len(ordered_bins) -1)
+#print("ordered bins by cost 2: " +str(ordered_bins))
