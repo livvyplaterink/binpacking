@@ -74,7 +74,7 @@ def bin_sort_volume(cv_dict, volume_dict, bin_list, start, end):
     bin_sort_volume(cv_dict, volume_dict, bin_list, start, p-1)
     bin_sort_volume(cv_dict, volume_dict, bin_list, p+1, end)
 
-#alternate sorting for S
+#defining ordering function for set S: this orders the bins according to non-decreasing order of the volume V_j and non-decreasing order of c_j/V_j when the volumes are equal
 def partition_6(cv_dict, volume_dict, bin_list, start, end):
     pivot_cv = cv_dict[bin_list[start]]
     pivot_v = volume_dict[bin_list[start]]
