@@ -1,3 +1,4 @@
+#this file creates another file called item_bin.py which contains the volumes and costs of the items and bins 
 import sys 
 import random 
 from sorting_objects import *

@@ -1,3 +1,5 @@
+#this file defines the item and bin classes and defines a multi sort function which allows you to sort lists of objects based on multiple attributes 
+
 from operator import attrgetter 
 
 #defining item class: this contains the names and volumes of the items 

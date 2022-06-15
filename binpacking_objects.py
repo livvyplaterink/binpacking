@@ -1,3 +1,6 @@
+#this file executes the heuristic: orders the items and bins, places the items in the bins, and then performs a postprocessing step
+#before running this file, you need to run test.py to generate the bin_objects list and the item_objects list or you need to define them at the top of this script 
+
 from sorting_objects import *
 from operator import attrgetter
 import random
