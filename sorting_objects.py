@@ -28,3 +28,26 @@ def multisort(input_list, specs):
         input_list.sort(key = attrgetter(key), reverse = reverse) 
     return input_list
 
+class permutations: 
+    def __init__(self, ordering, probability):
+        self.ordering = ordering
+        self.probability = probability 
+    def __repr__(self):
+        return repr((self.ordering, self.probability))
+
+def kt_dist(list1, list2):
+    print(list1)
+    print(list2)
+    d = 0
+    for i in range(len(list1)):
+        for j in range(i+1, len(list1)):
+            #print("i: " +str(list1[i]))
+            #print("j: " +str(list1[j]))
+            #print("sigma i: " +str(list2.index(list1[i])))
+            #print("sigma j: " +str(list2.index(list1[j])))
+            if list2.index(list1[i]) > list2.index(list1[j]):
+                #print("tau i < tau j and sigma i > sigma j")
+                d += 1
+    #print("kendall tau distance: " + str(d))
+    return d
+
