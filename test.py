@@ -6,7 +6,8 @@ from sorting_objects import *
 with open('item_bin.py', 'w') as f:
     sys.stdout = f
     #randomly choosing the number of items from a list
-    item_number_list = [850, 700, 800, 900]
+    #item_number_list = [850, 700, 800, 900]
+    item_number_list = [50, 60, 70, 80, 90]
     item_number = random.choice(item_number_list)
     #randomly assigning volumes valued between 1 and 20 to the items
     item_objects = "item_objects = ["
