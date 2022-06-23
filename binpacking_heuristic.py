@@ -109,4 +109,5 @@ def packing_bins(ordered_items, ordered_bins):
         cost += b.cost 
     print("final cost: " + str(cost))
 
-    print(filled_bins) 
+    print(filled_bins)
+    return(filled_bins) 
