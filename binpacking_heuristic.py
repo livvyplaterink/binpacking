@@ -58,4 +58,55 @@ def packing_bins(ordered_items, ordered_bins):
                             #print(filled_bins)
                             break 
                         break
-    return(filled_bins)                         
+    
+    #ordering bins in S according to non-decreasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
+    filled_bins = multisort(filled_bins, (('remaining_volume', False), ('cv_ratio', False)))
+    
+    #showing original cost before postprocessing step
+    cost1 = 0 
+    for b in filled_bins: 
+        cost1+= b.cost 
+    print("cost after filling bins: " + str(cost1)) 
+
+    #defining unfilled bin set K\S
+    unfilled_bins = []
+    for j in ordered_bins: 
+        if j not in filled_bins: 
+            unfilled_bins.append(j) 
+
+    #ordering bins in K\S according to non-decreasing order of cost and non-increasing order of volume when costs are equal
+    unfilled_bins = multisort(unfilled_bins, (('cost', False), ('volume', True)))
+    print(unfilled_bins)
+    for n in range(len(filled_bins)):
+        b = filled_bins[n]
+        print(n)
+        print(b.name)
+        v_b = 0
+        for i in b.items_contained:
+            v_b += i.volume
+        for k in unfilled_bins:
+            print("unfilled bin: " + str(k.name) + " volume " + str(k.volume))
+            print("filled bin: " + str(b.name) + " item volume " + str(v_b))
+            print("filled bin: " + str(b.name) + " remaining volume " + str(b.remaining_volume))
+            print("unfilled bin " + str(k.name) + " cost " + str(k.cost))
+            print("filled bin: " + str(b.name) + " cost " + str(b.cost))
+            if (k.volume >= v_b) and (k.cost < b.cost):
+                k.items_contained = b.items_contained
+                b.items_contained = []
+                k.remaining_volume -= v_b
+                b.remaining_volume = b.volume
+                unfilled_bins.remove(k)
+                unfilled_bins.append(b)
+                filled_bins[n] = k
+                unfilled_bins = multisort(unfilled_bins, (('cost', False), ('volume', True)))
+                break
+
+
+    print("cost after filling bins: " + str(cost1))
+
+    cost = 0 
+    for b in filled_bins:
+        cost += b.cost 
+    print("final cost: " + str(cost))
+
+    print(filled_bins) 
