@@ -1,32 +1,50 @@
+#this file makes a dictionary that contains lists of decision vectors that are created with various p-values according to the algorithm in the BubbleSearch paper 
+
 from sorting_objects import *
 from item_bin import *
 import random
-from itertools import permutations
+import sys
 
-item_objects = [items('i1', 86), items('i2', 24), items('i3', 91), items('i4', 52), items('i5', 67)]
+p_list = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+dvector_dict = {}
 
-ordered_items = sorted(item_objects, key = attrgetter('volume'), reverse = True)
+#looping through p-values in increments of 0.1 from 0.1 - 0.9 
+for q in p_list: 
+    p = q/10
+    print(p)
+    yes_no = [1, 0] 
+    prob = [p, 1-p]
+    dvector_dict[p] = [] 
+    
+    #choosing the number of permutations
+    num_permutations = 10000
+    for j in range(num_permutations):
+        print(j)
+        dvector = []
+        n = len(item_objects)
+        
+        #creating decision vectors by randomly choosing an index of the ordered item list according to probability p 
+        while n>0: 
+            for i in range(n): 
+                #print("i " + str(i))
+                choice = (random.choices(yes_no, prob))[0]
+                if choice == 1: 
+                    print(i)
+                    dvector.append(i)
+                    n-=1
+                    break 
+                else: 
+                    continue
 
-print("ordered items: " + str(ordered_items))
+        #adding decision vector to probability list only if it is not already in the list 
+        if dvector in dvector_dict[p]:
+            print(str(dvector) + " already in list")
+        if dvector not in dvector_dict[p]: 
+            print(str(dvector) + " being added to list")
+            dvector_dict[p].append(dvector)
 
-order_list = list(permutations(ordered_items))
-print("list of permutations: " + str(order_list))
-prob_list = []
-order_prob_list = []
-
-for o in order_list:
-    d = kt_dist(ordered_items, o)
-    print("kt dist: " + str(d))
-    prob = (1-0.6)**d
-    print("probability: " + str(prob))
-    prob_list.append(prob)
-    order_prob_list.append(permutation(o, prob)) 
-
-print("list of permutations with probability: " + str(order_prob_list))
-choice = (random.choices(order_list, prob_list))[0]
-print(choice)
-for o in order_prob_list: 
-    if o.ordering == choice: 
-        print(o.probability)
-
-
+#writing decision vector dictionary to item_bin.py
+with open('item_bin.py', 'a') as f:
+    sys.stdout = f
+    print("dvector_dict = " + str(dvector_dict))
+                        

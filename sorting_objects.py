@@ -28,12 +28,12 @@ def multisort(input_list, specs):
         input_list.sort(key = attrgetter(key), reverse = reverse) 
     return input_list
 
-class permutation: 
-    def __init__(self, ordering, probability):
-        self.ordering = ordering
-        self.probability = probability 
+class filled_bin_list: 
+    def __init__(self, filled_bins, cost):
+        self.filled_bins = filled_bins
+        self.cost = cost  
     def __repr__(self):
-        return repr((self.ordering, self.probability))
+        return repr((self.filled_bins, self.cost))
 
 def kt_dist(list1, list2):
     print(list1)
