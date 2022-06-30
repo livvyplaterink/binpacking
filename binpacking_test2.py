@@ -28,7 +28,7 @@ print("base filled_bins: " + str(base_filled_bins))
 
 #defining p, number of permutations
 p = 0.05
-num_permutations = 20
+num_permutations = 100
 yes_no = [1, 0] 
 prob = [p, 1-p]
 base_ordering = ordered_items.copy() 
@@ -64,27 +64,35 @@ for j in range(num_permutations):
 
     #checking that all items are packed 
     bin_items = [] 
+    bin_error = False 
     for b in new_filled_bins: 
         for i in b.items_contained: 
             bin_items.append(i)
     for i in item_objects: 
         if i not in bin_items: 
+            bin_error = True  
             print("ERROR!!!! ISSUE WITH ITEMS IN BINS")
-
-    #print(new_cost) 
-    #print(new_filled_bins)
+            break
+    print(bin_error) 
 
     #redefining base result if the new cost < base cost 
     if new_cost < base_cost: 
+        if bin_error == True: 
+            base_ordering = current_base_ordering
+            print(base_cost)
+            print(new_cost)
+            print("getting rid of incorrect ordering") 
+            continue 
         print(base_cost)
         print(new_cost) 
         print("NEW COST < BASE COST") 
         base_ordering = new_item_order.copy()
         base_result = new_result 
-        base_cost = new_cost 
-        base_filled_bins = new_filled_bins
+        base_cost = new_result.cost 
+        base_filled_bins = new_filled_bins.copy()
         print(new_item_order)
         print(new_filled_bins)
+        print(base_filled_bins)
         #print("base ordering end " + str(base_ordering))
         #print("current base ordering end " + str(current_base_ordering))
     
@@ -98,5 +106,21 @@ for j in range(num_permutations):
     print("---------------------------------")
 
 
-
-
+for b in ordered_bins:
+    b.items_contained = []
+    b.remaining_volume = b.volume
+base_result = packing_bins(base_ordering, ordered_bins)
+for b in ordered_bins: 
+    if b not in base_result.filled_bins:
+        base_result.filled_bins.append(b)
+print(base_result)
+print(base_filled_bins)
+print(base_result.filled_bins)
+result = "filled_bins = ["
+for b in base_result.filled_bins: 
+    result += "bins('" + str(b.name) + "', " + str(b.volume) + ", " + str(b.remaining_volume) + ", " + str(b.cost) + ", " + str(b.cv_ratio) + ", ["
+    for i in b.items_contained: 
+        result += "items" + str(i) + ", " 
+    result += "]), "
+result += "]" 
+print(result)
