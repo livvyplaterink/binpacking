@@ -20,15 +20,25 @@ print(ordered_items)
 #running heuristic on ordered items 
 base_result = packing_bins(ordered_items, ordered_bins)
 base_cost = base_result.cost
-base_filled_bins = base_result.filled_bins
+base_num = len(base_result.filled_bins) 
 
-
+print("base result: " + str(base_result)) 
 print("base cost: " + str(base_cost))
-print("base filled_bins: " + str(base_filled_bins))
+
+#checking that all of the items are packed into the bins 
+bin_items = []
+for b in base_result.filled_bins:
+    for i in b.items_contained:
+        bin_items.append(i)
+
+for i in item_objects:
+    if i not in bin_items:
+        print("ERROR!!!! ISSUE WITH ITEMS IN BINS")
+        print(i)
 
 #defining p, number of permutations
-p = 0.05
-num_permutations = 100
+p = 0.2
+num_permutations = 2000
 yes_no = [1, 0] 
 prob = [p, 1-p]
 base_ordering = ordered_items.copy() 
@@ -44,7 +54,7 @@ for j in range(num_permutations):
     for b in ordered_bins:
         b.items_contained = []
         b.remaining_volume = b.volume
-    
+
     #creating a new ordering of items 
     while n > 0:
         for i in range(n): 
@@ -56,24 +66,31 @@ for j in range(num_permutations):
                 break
             else: 
                 continue 
-    
+
     #running heuristic on new ordering of items 
     new_result = packing_bins(new_item_order, ordered_bins)
     new_cost = new_result.cost
     new_filled_bins = new_result.filled_bins
 
+    #print("new result " + str(new_result)) 
+    #print("new cost " + str(new_cost)) 
+    #print("new_filled_bins " + str(new_filled_bins)) 
+    #print("base result " + str(base_result)) 
+    #print("base cost: " + str(base_cost))
+    #print("new item order " + str(new_item_order)) 
+
     #checking that all items are packed 
-    bin_items = [] 
-    bin_error = False 
+    bin_items = []
+    bin_error = False
     for b in new_filled_bins: 
-        for i in b.items_contained: 
+        for i in b.items_contained:
             bin_items.append(i)
     for i in item_objects: 
         if i not in bin_items: 
             bin_error = True  
             print("ERROR!!!! ISSUE WITH ITEMS IN BINS")
             break
-    print(bin_error) 
+    print(bin_error)
 
     #redefining base result if the new cost < base cost 
     if new_cost < base_cost: 
@@ -89,12 +106,8 @@ for j in range(num_permutations):
         base_ordering = new_item_order.copy()
         base_result = new_result 
         base_cost = new_result.cost 
-        base_filled_bins = new_filled_bins.copy()
-        print(new_item_order)
-        print(new_filled_bins)
-        print(base_filled_bins)
-        #print("base ordering end " + str(base_ordering))
-        #print("current base ordering end " + str(current_base_ordering))
+        #print(new_item_order)
+        #print(new_filled_bins)
     
     #keeping the same base result if the new cost >= base cost 
     else: 
@@ -105,7 +118,12 @@ for j in range(num_permutations):
         #print("current base ordering end " + str(current_base_ordering)) 
     print("---------------------------------")
 
+final_num = len(base_result.filled_bins) 
 
+print(base_num)
+print(final_num)
+
+#printing off the results and storing them in binpacking_result.py to be used by visualization.py 
 for b in ordered_bins:
     b.items_contained = []
     b.remaining_volume = b.volume
@@ -113,9 +131,6 @@ base_result = packing_bins(base_ordering, ordered_bins)
 for b in ordered_bins: 
     if b not in base_result.filled_bins:
         base_result.filled_bins.append(b)
-print(base_result)
-print(base_filled_bins)
-print(base_result.filled_bins)
 result = "filled_bins = ["
 for b in base_result.filled_bins: 
     result += "bins('" + str(b.name) + "', " + str(b.volume) + ", " + str(b.remaining_volume) + ", " + str(b.cost) + ", " + str(b.cv_ratio) + ", ["
@@ -123,4 +138,9 @@ for b in base_result.filled_bins:
         result += "items" + str(i) + ", " 
     result += "]), "
 result += "]" 
-print(result)
+
+with open('binpacking_result.py', 'w') as f:
+    sys.stdout = f
+    print("from sorting_objects import *")
+    print(result)
+

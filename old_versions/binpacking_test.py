@@ -57,8 +57,6 @@ for p in dvector_dict:
             print(new_cost)
             better_filled_bins = new_filled_bins
             print("NEW COST < BASE COST")
-            print(o)
-            print(new_filled_bins)
-        if new_cost == 386: 
-            print(o)
+            #print(o)
+            #print(new_filled_bins)
 #print(ordered_bins)

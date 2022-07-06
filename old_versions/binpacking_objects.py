@@ -4,7 +4,7 @@
 from sorting_objects import *
 from operator import attrgetter
 import random
-from item_bin2 import *
+from item_bin import *
 import sys 
 
 
@@ -19,8 +19,6 @@ ordered_bins = multisort(bin_objects, (('cv_ratio', False), ('volume', False)))
 
 #ordering items in I according to non-increasing order of volume
 ordered_items = sorted(item_objects, key = attrgetter('volume'), reverse = True)
-
-#ordered_items = [items('i43', 100), items('i52', 100), items('i61', 97), items('i59', 96), items('i50', 95), items('i10', 94), items('i16', 93), items('i38', 91), items('i14', 90), items('i76', 88), items('i66', 87), items('i23', 86), items('i45', 78), items('i70', 78), items('i56', 77), items('i8', 76), items('i29', 75), items('i68', 74), items('i34', 69), items('i42', 68), items('i41', 67), items('i11', 65), items('i26', 64), items('i53', 63), items('i12', 61), items('i69', 61), items('i44', 58), items('i1', 57), items('i47', 57), items('i39', 56), items('i13', 54), items('i6', 51), items('i40', 49), items('i65', 49), items('i79', 47), items('i7', 46), items('i3', 44), items('i62', 44), items('i17', 43), items('i54', 40), items('i73', 38), items('i75', 38), items('i22', 37), items('i72', 37), items('i4', 36), items('i55', 36), items('i9', 34), items('i15', 34), items('i37', 33), items('i19', 32), items('i20', 31), items('i49', 31), items('i78', 31), items('i58', 30), items('i18', 29), items('i35', 29), items('i24', 27), items('i2', 26), items('i46', 26), items('i67', 26), items('i48', 25), items('i80', 25), items('i5', 21), items('i32', 20), items('i36', 18), items('i74', 17), items('i30', 16), items('i64', 16), items('i25', 14), items('i57', 14), items('i33', 13), items('i63', 12), items('i31', 11), items('i77', 11), items('i28', 10), items('i60', 10), items('i51', 9), items('i71', 7), items('i21', 6), items('i27', 3), ]
 
 
 #defining filled bins list 
