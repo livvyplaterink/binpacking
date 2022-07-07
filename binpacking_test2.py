@@ -3,6 +3,9 @@ from item_bin import *
 from binpacking_heuristic import *
 import sys
 import random
+import timeit
+
+start = timeit.default_timer()
 
 #defining cost/volume ratio for bins
 for b in bin_objects:
@@ -37,11 +40,11 @@ for i in item_objects:
         print(i)
 
 #defining p, number of permutations
-p = 0.2
+p = 0.05
 num_permutations = 2000
-yes_no = [1, 0] 
-prob = [p, 1-p]
 base_ordering = ordered_items.copy() 
+num_improved = 0
+replacements = []
 
 #iterating over the number of permutations 
 for j in range(num_permutations):
@@ -55,17 +58,25 @@ for j in range(num_permutations):
         b.items_contained = []
         b.remaining_volume = b.volume
 
+    #print(base_ordering) 
+
     #creating a new ordering of items 
     while n > 0:
         for i in range(n): 
-            choice = (random.choices(yes_no, prob))[0]
-            if choice == 1: 
+            choice = random.random()
+            #print(choice)
+            if choice <= p:
+                #print("yes") 
+                #print(base_ordering[i])
                 new_item_order.append(base_ordering[i])
                 base_ordering.remove(base_ordering[i])
                 n-=1
                 break
             else: 
+                #print("no")
                 continue 
+    
+    #print(new_item_order)
 
     #running heuristic on new ordering of items 
     new_result = packing_bins(new_item_order, ordered_bins)
@@ -106,6 +117,8 @@ for j in range(num_permutations):
         base_ordering = new_item_order.copy()
         base_result = new_result 
         base_cost = new_result.cost 
+        num_improved += 1
+        replacements.append(j) 
         #print(new_item_order)
         #print(new_filled_bins)
     
@@ -122,6 +135,8 @@ final_num = len(base_result.filled_bins)
 
 print(base_num)
 print(final_num)
+print('number of replacements ', num_improved) 
+print(replacements)
 
 #printing off the results and storing them in binpacking_result.py to be used by visualization.py 
 for b in ordered_bins:
@@ -138,6 +153,10 @@ for b in base_result.filled_bins:
         result += "items" + str(i) + ", " 
     result += "]), "
 result += "]" 
+
+stop = timeit.default_timer()
+
+print("time: ", stop - start)
 
 with open('binpacking_result.py', 'w') as f:
     sys.stdout = f
