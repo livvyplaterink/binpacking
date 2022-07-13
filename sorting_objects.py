@@ -45,3 +45,28 @@ def kt_dist(list1, list2):
                 d += 1
     return d
 
+def binary_search(arr, low, high, x):
+    if high >= low:
+        mid = (high + low) // 2
+        #print("high " , high)
+        #print("low " , low)
+        #print("mid ", mid)
+        if (arr[low].remaining_volume >= x.volume or high == low):
+            #print("1") 
+            return arr[low]
+        elif arr[mid].remaining_volume < x.volume:
+            #print(mid)
+            if arr[mid + 1].remaining_volume > x.volume:
+                #print("2")
+                return arr[mid + 1]
+            else:
+                return binary_search(arr, mid + 1, high, x)
+        else:
+            #print(mid)
+            if arr[mid-1].remaining_volume < x.volume:
+                #print("3")
+                return arr[mid]
+            else:
+                return binary_search(arr, low, mid - 1, x)
+
+
