@@ -69,4 +69,52 @@ def binary_search(arr, low, high, x):
             else:
                 return binary_search(arr, low, mid - 1, x)
 
+def insort(arr, low, high, x):
+    if high >= low:
+        #print("high " , arr[high])
+        #print("low " , arr[low])
+        mid = (high + low) // 2
+        #print("mid " , arr[mid])
+        if arr[mid].remaining_volume == x.remaining_volume:
+            if (high == low) or (arr[mid].cv_ratio <= x.cv_ratio and ((arr[mid + 1].remaining_volume > x.remaining_volume) or (arr[mid + 1].remaining_volume == x.remaining_volume and arr[mid + 1].cv_ratio >= x.cv_ratio))):
+                return arr[:mid + 1] + [x] + arr[mid + 1:]
+            elif arr[mid].cv_ratio < x.cv_ratio and (arr[mid+1].remaining_volume == x.remaining_volume and arr[mid+1].cv_ratio < x.cv_ratio):
+                #print("1")
+                return insort(arr, mid + 1, high, x)
+            else:
+                #print("2")
+                return insort(arr, low, mid - 1, x)
+        elif arr[mid].remaining_volume < x.remaining_volume:
+            if (high == low) or arr[mid + 1].remaining_volume > x.remaining_volume:
+                return arr[:mid + 1] + [x] + arr[mid + 1:]
+            else:
+                #print("3")
+                return insort(arr, mid + 1, high, x)
+        else:
+            if high == low or arr[mid - 1].remaining_volume < x.remaining_volume:
+                return arr[:mid] + [x] + arr[mid:]
+            else:
+                #print("4")
+                return insort(arr, low, mid - 1, x)
+
+def insort2(arr, low, high, x):
+    if high >= low:
+        mid = (high + low) // 2
+        if arr[mid].remaining_volume == x.remaining_volume:
+            if (high == low) or (arr[mid].cv_ratio <= x.cv_ratio and arr[mid + 1].cv_ratio >= x.cv_ratio):
+                return arr[:mid + 1] + [x] + arr[mid + 1:]
+            elif arr[mid].cv_ratio < x.cv_ratio and arr[mid + 1].cv_ratio < x.cv_ratio:
+                return insort(arr, mid + 1, high, x)
+            else:
+                return insort(arr, low, mid - 1, x)
+        elif arr[mid].remaining_volume < x.remaining_volume:
+            if high == low or arr[mid + 1].remaining_volume > x.remaining_volume:
+                return arr[:mid + 1] + [x] + arr[mid + 1:]
+            else:
+                return insort(arr, mid + 1, high, x)
+        else:
+            if high == low or arr[mid - 1].remaining_volume < x.remaining_volume:
+                return arr[:mid] + [x] + arr[mid:]
+            else:
+                return insort(arr, low, mid - 1, x)
 

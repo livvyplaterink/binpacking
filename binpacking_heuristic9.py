@@ -1,3 +1,5 @@
+#this is the newest heuristic!
+
 from sorting_objects import *
 import sys
 from operator import attrgetter
@@ -40,6 +42,7 @@ def packing_bins(item_list, bin_list):
         else: 
             #if S is not empty, and if i cannot be accomodated into a bin in S, then loop through the unfilled bins and place i into the first bin in K that can accomodate its volume  
             if i.volume > filled_bins[len(filled_bins)-1].remaining_volume:
+                #print(filled_bins) 
                 for j in bin_list:
                     #print("i: " + str(i.name))
                     #print("j: " + str(j.name))
@@ -61,12 +64,14 @@ def packing_bins(item_list, bin_list):
                         filled_bins2.append(j)
                     #otherwise, j is partially full
                     else:
-                        filled_bins.append(j)
+                        #print(j) 
+                        filled_bins = insort(filled_bins, 0, len(filled_bins) - 1, j)
+                        #filled_bins.append(j)
                     bin_list.remove(j)
 
                     #ordering bins in S according to non-decreasing order of remaining volume and non-decreasing order of c_j/V_j when the remaining volumes are equal
                     #filled_bins.sort(key = attrgetter('remaining_volume', 'cost'))
-                    filled_bins.sort(key = attrgetter('remaining_volume', 'cv_ratio'))
+                    #filled_bins.sort(key = attrgetter('remaining_volume', 'cv_ratio'))
                     #filled_bins.sort(key = lambda x: (x.remaining_volume, x.volume))
                     
                     #filled_bins.sort(key = attrgetter('remaining_volume', 'volume'))
